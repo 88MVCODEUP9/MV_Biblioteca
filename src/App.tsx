@@ -302,6 +302,106 @@ const PRELOADED_BOOKS: Book[] = [
     coverPath: "https://imgv2-2-f.scribdassets.com/img/document/780316146/original/3cfeb8ce1e/1?v=1",
     collectionId: "Invencivel",
     addedDate: "2026-03-25T00:00:00.000Z"
+  },
+    {
+    id: "28",
+    title: "A  Criança Amaldiçoada",
+    author: "J. K. Rowling",
+    fileType: "pdf",
+    filePath: "https://mvin2006.github.io/LIVROS/J.%20K.%20Rowling/PDF/A%20CRIANCA%20AMALDICOADA.PDF",
+    coverPath: "https://raw.githubusercontent.com/Mvin2006/LIVROS/refs/heads/main/J.%20K.%20Rowling/CAPA/A%20CRIANCA%20AMALDICOADA.WEBP",
+    collectionId: "Harry Potter",
+    addedDate: "2026-03-25T00:00:00.000Z"
+  },
+  {
+    id: "29",
+    title: "A Câmara Secreta",
+    author: "J. K. Rowling",
+    fileType: "pdf",
+    filePath: "https://mvin2006.github.io/LIVROS/J.%20K.%20Rowling/PDF/E%20A%20CAMARA%20SECRETA%20.pdf",
+    coverPath: "https://github.com/Mvin2006/LIVROS/blob/main/J.%20K.%20Rowling/CAPA/E%20A%20CAMARA%20SECRETA.WEBP?raw=truehttps://github.com/Mvin2006/LIVROS/blob/main/J.%20K.%20Rowling/CAPA/E%20A%20CAMARA%20SECRETA.WEBP?raw=true",
+    collectionId: "Harry Potter",
+    addedDate: "2026-03-25T00:00:00.000Z"
+  },
+  {
+    id: "30",
+    title: "A Pedra Filosofal",
+    author: "J. K. Rowling",
+    fileType: "pdf",
+    filePath: "https://mvin2006.github.io/LIVROS/J.%20K.%20Rowling/PDF/E%20A%20PEDRA%20FILOSOFA%20.pdf",
+    coverPath: "https://github.com/Mvin2006/LIVROS/blob/main/J.%20K.%20Rowling/CAPA/E%20A%20PEDRA%20FILOSOFAL.webp?raw=true",
+    collectionId: "Harry Potter",
+    addedDate: "2026-03-25T00:00:00.000Z"
+  },
+  {
+    id: "31",
+    title: "O Prisioneiro de Azkaban",
+    author: "J. K. Rowling",
+    fileType: "pdf",
+    filePath: "https://mvin2006.github.io/LIVROS/J.%20K.%20Rowling/PDF/E%20O%20PRISIONEIRO%20DE%20AZKABAN.pdf",
+    coverPath: "https://github.com/Mvin2006/LIVROS/blob/main/J.%20K.%20Rowling/CAPA/O%20PRISIONEIRO%20DE%20AZKABAN.webp?raw=true",
+    collectionId: "Harry Potter",
+    addedDate: "2026-03-25T00:00:00.000Z"
+  },
+  {
+    id: "32",
+    title: "O Cálice de Fogo",
+    author: "J. K. Rowling",
+    fileType: "pdf",
+    filePath: "https://mvin2006.github.io/LIVROS/J.%20K.%20Rowling/PDF/E%20O%20CALICE%20DE%20FOGO%20.pdf",
+    coverPath: "https://github.com/Mvin2006/LIVROS/blob/main/J.%20K.%20Rowling/CAPA/O%20CALICE%20DE%20FOGO.webp?raw=true",
+    collectionId: "Harry Potter",
+    addedDate: "2026-03-25T00:00:00.000Z"
+  },
+  {
+    id: "33",
+    title: "A Orden do Fênix",
+    author: "J. K. Rowling",
+    fileType: "pdf",
+    filePath: "https://mvin2006.github.io/LIVROS/J.%20K.%20Rowling/PDF/E%20A%20ORDEM%20DA%20FENIX.pdf",
+    coverPath: "https://github.com/Mvin2006/LIVROS/blob/main/J.%20K.%20Rowling/CAPA/E%20A%20ORDEM%20DA%20FENIX.WEBP?raw=true",
+    collectionId: "Harry Potter",
+    addedDate: "2026-03-25T00:00:00.000Z"
+  },
+  {
+    id: "34",
+    title: "O Enigma do Príncipe",
+    author: "J. K. Rowling",
+    fileType: "pdf",
+    filePath: "https://mvin2006.github.io/LIVROS/J.%20K.%20Rowling/PDF/E%20O%20ENIGMA%20DO%20PRINCIPE.pdf",
+    coverPath: "https://github.com/Mvin2006/LIVROS/blob/main/J.%20K.%20Rowling/CAPA/O%20ENIGMA%20DO%20PRINCIPE.WEBP?raw=true",
+    collectionId: "Harry Potter",
+    addedDate: "2026-03-25T00:00:00.000Z"
+  },
+  {
+    id: "35",
+    title: "As Relíquias da Morte",
+    author: "J. K. Rowling",
+    fileType: "pdf",
+    filePath: "https://mvin2006.github.io/LIVROS/J.%20K.%20Rowling/PDF/E%20AS%20RELIQUIAS%20DA%20MORTE.pdf",
+    coverPath: "https://github.com/Mvin2006/LIVROS/blob/main/J.%20K.%20Rowling/CAPA/AS%20RELIQUIAS%20DA%20MORTE.WEBP?raw=true",
+    collectionId: "Harry Potter",
+    addedDate: "2026-03-25T00:00:00.000Z"
+  },
+  {
+    id: "36",
+    title: "Animais Fantásticos: Os Crimes de Grindelwald",
+    author: "J. K. Rowling",
+    fileType: "pdf",
+    filePath: "https://mvin2006.github.io/LIVROS/J.%20K.%20Rowling/PDF/ANIMAIS%20FANTASTICOS%20E%20OS%20CRIMES%20DE%20GRINDELWALD.PDF",
+    coverPath: "https://github.com/Mvin2006/LIVROS/blob/main/J.%20K.%20Rowling/CAPA/ANIMAIS%20FANTASTICOS%20E%20OS%20CRIMES%20DE%20GRINDELWALD.WEBP?raw=true",
+    collectionId: "Harry Potter",
+    addedDate: "2026-03-25T00:00:00.000Z"
+  },
+  {
+    id: "37",
+    title: "Os Contos de Beedle, O Bardo",
+    author: "J. K. Rowling",
+    fileType: "pdf",
+    filePath: "https://mvin2006.github.io/LIVROS/J.%20K.%20Rowling/PDF/O%20BARDO%20OS%20CONTOS.pdf",
+    coverPath: "https://github.com/Mvin2006/LIVROS/blob/main/J.%20K.%20Rowling/CAPA/O%20BARDO%20OS%20CONTOS.webp?raw=true",
+    collectionId: "Harry Potter",
+    addedDate: "2026-03-25T00:00:00.000Z"
   }
 ];
 
