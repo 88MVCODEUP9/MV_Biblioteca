@@ -78,7 +78,20 @@ import {
     const rootRef = useRef<HTMLDivElement>(null);
     const readerRef = useRef<HTMLDivElement>(null);
     const bookRef = useRef<ReturnType<typeof ePub> | null>(null);
-    const renditionRef = useRef<any>(null);
+    type RenditionLike = {
+      destroy?: () => void;
+      themes: {
+        default: (styles: Record<string, Record<string, string>>) => void;
+        fontSize: (value: string) => void;
+        register: (name: string, styles: Record<string, Record<string, string>>) => void;
+        select: (name: string) => void;
+      };
+      on: (event: string, handler: (location?: EpubLocation) => void) => void;
+      display: () => Promise<void>;
+      next: () => Promise<void>;
+      prev: () => Promise<void>;
+    };
+    const renditionRef = useRef<RenditionLike | null>(null);
   
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -102,7 +115,7 @@ import {
     const [showToc, setShowToc] =
       useState(false);
   
-    const [toc, setToc] = useState<any[]>([]);
+    const [toc, setToc] = useState<Array<{ label?: string; href?: string; subitems?: Array<{ label?: string; href?: string }> }>>([]);
   
     const applyTheme = useCallback(
       (newTheme: ReaderTheme) => {
@@ -427,25 +440,26 @@ import {
     ]);
   
     useEffect(() => {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       void loadBook();
-  
+
       return () => {
         try {
-          renditionRef.current?.destroy();
+          renditionRef.current?.destroy?.();
         } catch {
           // Ignore.
         }
-  
+
         try {
           bookRef.current?.destroy();
         } catch {
           // Ignore.
         }
-  
+
         renditionRef.current = null;
         bookRef.current = null;
       };
-    }, [url]);
+    }, [loadBook]);
   
     useEffect(() => {
       applyTheme(theme);

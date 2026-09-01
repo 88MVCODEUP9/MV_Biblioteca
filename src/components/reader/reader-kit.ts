@@ -196,6 +196,8 @@ export function useAutoHideControls({
 
   useEffect(() => {
     if (suspended) {
+      // A visibilidade precisa permanecer explícita enquanto o leitor está suspenso.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setVisible(true);
       clearTimer();
       return;

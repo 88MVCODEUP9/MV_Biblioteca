@@ -471,39 +471,52 @@ function AddCollectionForm({ collections, onAdd }: AddCollectionFormProps) {
 // ─── Main App ─────────────────────────────────────────────────────────────────
 
 function App() {
-  const [books,              setBooks]             = useState<Book[]>([]);
-  const [collectionDefinitions, setCollectionDefinitions] = useState<Collection[]>(DEFAULT_COLLECTIONS);
+  const [books, setBooks] = useState<Book[]>(() => {
+    if (typeof window === 'undefined') return PRELOADED_BOOKS;
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      const userBooks: Book[] = (saved ? JSON.parse(saved) : []).filter(
+        (book: Book) => book.fileType === 'pdf' || book.fileType === 'epub'
+      );
+      const preloadedIds = new Set(PRELOADED_BOOKS.map(b => b.id));
+      const extras = userBooks.filter(b => !preloadedIds.has(b.id));
+      return [...PRELOADED_BOOKS, ...extras];
+    } catch {
+      return PRELOADED_BOOKS;
+    }
+  });
+
+  const [collectionDefinitions, setCollectionDefinitions] = useState<Collection[]>(() => {
+    if (typeof window === 'undefined') return DEFAULT_COLLECTIONS;
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      const userBooks: Book[] = (saved ? JSON.parse(saved) : []).filter(
+        (book: Book) => book.fileType === 'pdf' || book.fileType === 'epub'
+      );
+      const savedCollections: Collection[] = JSON.parse(localStorage.getItem(COLLECTIONS_STORAGE_KEY) || '[]');
+      const bookCollections = [...PRELOADED_BOOKS, ...userBooks].flatMap(book => {
+        const definitions: Collection[] = [];
+        if (book.collectionId) definitions.push({ id: book.collectionId, name: book.collectionId });
+        if (book.subCollectionId) {
+          definitions.push({ id: book.subCollectionId, name: book.subCollectionId, parentId: book.collectionId });
+        }
+        return definitions;
+      });
+      const bookIds = new Set([...PRELOADED_BOOKS, ...userBooks].flatMap(book => [book.collectionId, book.subCollectionId].filter(Boolean)));
+      return [...DEFAULT_COLLECTIONS, ...savedCollections.filter(collection =>
+        !LEGACY_AUTOMATIC_SUBCOLLECTIONS.has(collection.id) || bookIds.has(collection.id)
+      ), ...bookCollections].filter((collection, index, all) => all.findIndex(item => item.id === collection.id) === index);
+    } catch {
+      return DEFAULT_COLLECTIONS;
+    }
+  });
+
   const [activeTab,          setActiveTab]          = useState<'books' | 'collections' | 'config'>('books');
   const [searchQuery,        setSearchQuery]        = useState('');
   const [selectedCollection, setSelectedCollection] = useState<string | null>(null);
   const [readingBook,        setReadingBook]        = useState<Book | null>(null);
   const [toast,              setToast]              = useState({ message: '', show: false });
   const [viewMode,           setViewMode]           = useState<'grid' | 'list'>('grid');
-
-  // ── Load books (FIXED: no longer wipes localStorage on mount) ──────────────
-  useEffect(() => {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    const userBooks: Book[] = (saved ? JSON.parse(saved) : []).filter(
-      (book: Book) => book.fileType === 'pdf' || book.fileType === 'epub'
-    );
-    const savedCollections: Collection[] = JSON.parse(localStorage.getItem(COLLECTIONS_STORAGE_KEY) || '[]');
-    const bookCollections = [...PRELOADED_BOOKS, ...userBooks].flatMap(book => {
-      const definitions: Collection[] = [];
-      if (book.collectionId) definitions.push({ id: book.collectionId, name: book.collectionId });
-      if (book.subCollectionId) {
-        definitions.push({ id: book.subCollectionId, name: book.subCollectionId, parentId: book.collectionId });
-      }
-      return definitions;
-    });
-    const preloadedIds = new Set(PRELOADED_BOOKS.map(b => b.id));
-    const extras = userBooks.filter(b => !preloadedIds.has(b.id));
-    const bookIds = new Set([...PRELOADED_BOOKS, ...userBooks].flatMap(book => [book.collectionId, book.subCollectionId].filter(Boolean)));
-    setBooks([...PRELOADED_BOOKS, ...extras]);
-    setCollectionDefinitions([...DEFAULT_COLLECTIONS, ...savedCollections.filter(collection =>
-      !LEGACY_AUTOMATIC_SUBCOLLECTIONS.has(collection.id) || bookIds.has(collection.id)
-    ), ...bookCollections]
-      .filter((collection, index, all) => all.findIndex(item => item.id === collection.id) === index));
-  }, []);
 
   // ── Persist user-added books ───────────────────────────────────────────────
   useEffect(() => {
