@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gerador de Catálogo — HQ Reader</title>
+<style>
+  :root{
+    --bg:#0a0a12;
+    --bg-panel:#12121e;
+    --bg-field:#1a1a2c;
+    --border:#2a2a42;
+    --border-soft:#22223a;
+    --accent:#8b5cf6;
+    --accent-soft:#6d28d9;
+    --accent-glow:rgba(139,92,246,.35);
+    --cyan:#22d3ee;
+    --text:#e7e6f2;
+    --text-dim:#9b98b8;
+    --text-faint:#5f5d7d;
+    --ok:#34d399;
+    --warn:#fbbf24;
+    --mono:'JetBrains Mono','SF Mono',Consolas,monospace;
+    --sans:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      radial-gradient(circle at 15% 0%, rgba(139,92,246,.14), transparent 45%),
+      radial-gradient(circle at 85% 100%, rgba(34,211,238,.10), transparent 45%),
+      var(--bg);
+    color:var(--text);
+    font-family:var(--sans);
+    min-height:100vh;
+    padding:32px 20px 80px;
+  }
+  .wrap{max-width:1180px;margin:0 auto;}
+
+  /* header */
+  header{margin-bottom:28px;}
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.18em;
+    color:var(--cyan);
+    text-transform:uppercase;
+    display:flex;align-items:center;gap:8px;
+  }
+  .eyebrow::before{
+    content:"";width:6px;height:6px;border-radius:50%;
+    background:var(--cyan);box-shadow:0 0 8px var(--cyan);
+  }
+  h1{
+    font-size:28px;
+    margin:8px 0 6px;
+    font-weight:700;
+    letter-spacing:-.01em;
+    background:linear-gradient(135deg,#f2f1fb 20%,#b9a8f5 70%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  header p{color:var(--text-dim);font-size:14px;margin:0;max-width:640px;line-height:1.5;}
+
+  /* layout */
+  .grid{display:grid;grid-template-columns:380px 1fr;gap:20px;align-items:start;}
+  @media (max-width:920px){.grid{grid-template-columns:1fr;}}
+
+  .panel{
+    background:var(--bg-panel);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:22px;
+  }
+  .panel + .panel{margin-top:20px;}
+  .panel h2{
+    font-size:12px;text-transform:uppercase;letter-spacing:.12em;
+    color:var(--text-dim);margin:0 0 16px;font-weight:600;
+    display:flex;align-items:center;gap:8px;
+  }
+  .panel h2 .num{
+    font-family:var(--mono);color:var(--accent);
+    background:rgba(139,92,246,.12);
+    border:1px solid rgba(139,92,246,.35);
+    width:20px;height:20px;border-radius:6px;
+    display:inline-flex;align-items:center;justify-content:center;
+    font-size:11px;
+  }
+
+  .field{margin-bottom:14px;}
+  .field:last-child{margin-bottom:0;}
+  .field label{
+    display:block;font-size:12px;color:var(--text-dim);
+    margin-bottom:6px;font-weight:500;
+  }
+  .field label .opt{color:var(--text-faint);font-weight:400;}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+
+  input[type=text], input[type=number], input[type=date], select{
+    width:100%;
+    background:var(--bg-field);
+    border:1px solid var(--border-soft);
+    color:var(--text);
+    padding:10px 12px;
+    border-radius:8px;
+    font-family:var(--mono);
+    font-size:13px;
+    outline:none;
+    transition:border-color .15s, box-shadow .15s;
+  }
+  input:focus, select:focus{
+    border-color:var(--accent);
+    box-shadow:0 0 0 3px var(--accent-glow);
+  }
+  select{font-family:var(--sans);}
+
+  .dropzone{
+    border:1.5px dashed var(--border-soft);
+    border-radius:10px;
+    padding:26px 16px;
+    text-align:center;
+    cursor:pointer;
+    transition:border-color .15s, background .15s;
+    background:rgba(255,255,255,.01);
+  }
+  .dropzone:hover, .dropzone.drag{
+    border-color:var(--accent);
+    background:rgba(139,92,246,.06);
+  }
+  .dropzone svg{opacity:.6;margin-bottom:8px;}
+  .dropzone .main{font-size:13px;color:var(--text);font-weight:500;}
+  .dropzone .sub{font-size:11.5px;color:var(--text-faint);margin-top:4px;font-family:var(--mono);}
+  #folderInput, #filesInput{display:none;}
+
+  .btn{
+    border:none;border-radius:8px;
+    padding:11px 16px;
+    font-family:var(--sans);
+    font-weight:600;
+    font-size:13px;
+    cursor:pointer;
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    transition:transform .1s, filter .15s, opacity .15s;
+  }
+  .btn:active{transform:scale(.98);}
+  .btn:disabled{opacity:.35;cursor:not-allowed;}
+  .btn-primary{
+    background:linear-gradient(135deg,var(--accent),var(--accent-soft));
+    color:#fff;
+    box-shadow:0 4px 18px rgba(139,92,246,.35);
+    width:100%;
+  }
+  .btn-primary:hover:not(:disabled){filter:brightness(1.08);}
+  .btn-ghost{
+    background:var(--bg-field);
+    border:1px solid var(--border-soft);
+    color:var(--text-dim);
+  }
+  .btn-ghost:hover{color:var(--text);border-color:var(--accent);}
+  .btn-sm{padding:7px 12px;font-size:12px;}
+
+  .actions-row{display:flex;gap:10px;margin-top:16px;}
+  .actions-row .btn{flex:1;}
+
+  /* list */
+  .list-head{
+    display:flex;justify-content:space-between;align-items:center;
+    margin-bottom:12px;
+  }
+  .list-head h2{margin:0;}
+  .count-pill{
+    font-family:var(--mono);font-size:11px;color:var(--cyan);
+    background:rgba(34,211,238,.08);border:1px solid rgba(34,211,238,.3);
+    padding:3px 9px;border-radius:20px;
+  }
+  .empty-state{
+    text-align:center;padding:60px 20px;color:var(--text-faint);
+  }
+  .empty-state svg{opacity:.35;margin-bottom:14px;}
+  .empty-state .t{color:var(--text-dim);font-size:14px;margin-bottom:4px;}
+  .empty-state .s{font-size:12.5px;}
+
+  .items{display:flex;flex-direction:column;gap:8px;max-height:560px;overflow-y:auto;padding-right:4px;}
+  .items::-webkit-scrollbar{width:8px;}
+  .items::-webkit-scrollbar-thumb{background:var(--border-soft);border-radius:8px;}
+
+  .item{
+    display:grid;
+    grid-template-columns:44px 1fr 20px;
+    align-items:center;
+    gap:12px;
+    background:var(--bg-field);
+    border:1px solid var(--border-soft);
+    border-radius:9px;
+    padding:10px 12px;
+    cursor:grab;
+    transition:border-color .12s, background .12s;
+  }
+  .item.dragging{opacity:.4;}
+  .item:hover{border-color:rgba(139,92,246,.4);}
+  .item .id{
+    font-family:var(--mono);color:var(--accent);font-size:13px;font-weight:600;
+    background:rgba(139,92,246,.1);border-radius:6px;
+    height:28px;display:flex;align-items:center;justify-content:center;
+  }
+  .item .info{min-width:0;}
+  .item .title{font-size:13px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .item .meta{font-size:11px;color:var(--text-faint);font-family:var(--mono);margin-top:2px;}
+  .item .grip{color:var(--text-faint);font-size:14px;text-align:center;user-select:none;}
+
+  /* output */
+  textarea#output{
+    width:100%;min-height:220px;
+    background:#08080f;
+    border:1px solid var(--border-soft);
+    border-radius:10px;
+    color:#c9c6ee;
+    font-family:var(--mono);
+    font-size:12px;
+    line-height:1.6;
+    padding:16px;
+    resize:vertical;
+    outline:none;
+  }
+  textarea#output:focus{border-color:var(--accent);}
+
+  .toast{
+    position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);
+    background:var(--bg-panel);border:1px solid var(--accent);
+    color:var(--text);padding:11px 18px;border-radius:9px;
+    font-size:13px;box-shadow:0 8px 30px rgba(0,0,0,.5);
+    opacity:0;pointer-events:none;transition:opacity .2s, transform .2s;
+    display:flex;align-items:center;gap:8px;
+  }
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+  .toast .dot{width:7px;height:7px;border-radius:50%;background:var(--ok);}
+
+  .hint{font-size:11.5px;color:var(--text-faint);margin-top:6px;line-height:1.5;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">HQ Reader · Catálogo</div>
+    <h1>Gerador de catálogo de HQs</h1>
+    <p>Adicione PDFs individuais ou uma pasta, preencha os dados da coleção e gere as entradas prontas — o nome de cada arquivo vira automaticamente o título.</p>
+  </header>
+
+  <div class="grid">
+
+    <!-- LEFT: config -->
+    <div>
+      <div class="panel">
+        <h2><span class="num">1</span>Arquivos</h2>
+        <div class="dropzone" id="dropzone">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="1.6"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+          <div class="main">Clique para adicionar PDFs</div>
+          <div class="sub">selecione um ou vários .pdf, ou arraste-os aqui</div>
+        </div>
+        <div class="actions-row" style="margin-top:10px;">
+          <button type="button" class="btn btn-ghost" id="addFilesBtn">Adicionar PDFs</button>
+          <button type="button" class="btn btn-ghost" id="addFolderBtn">Adicionar pasta</button>
+          <button type="button" class="btn btn-ghost" id="clearFilesBtn" disabled>Limpar</button>
+        </div>
+        <input type="file" id="folderInput" webkitdirectory directory multiple>
+        <input type="file" id="filesInput" multiple accept=".pdf,application/pdf">
+        <div class="hint" id="fileHint">Os PDFs adicionados aparecem individualmente abaixo. O título de cada entrada é obtido diretamente do nome do arquivo, sem a extensão .pdf.</div>
+      </div>
+
+      <div class="panel">
+        <h2><span class="num">2</span>Numeração</h2>
+        <div class="field">
+          <label for="startId">ID inicial</label>
+          <input type="number" id="startId" value="1" min="0">
+        </div>
+        <div class="field">
+          <label for="sortMode">Ordenar arquivos por</label>
+          <select id="sortMode">
+            <option value="natural">Nome (numérico natural) — recomendado</option>
+            <option value="alpha">Nome (alfabético puro)</option>
+            <option value="none">Ordem em que foram selecionados</option>
+          </select>
+        </div>
+        <div class="hint">Depois de carregar, arraste os itens da lista à direita para reordenar manualmente — os IDs se atualizam sozinhos.</div>
+      </div>
+
+      <div class="panel">
+        <h2><span class="num">3</span>Metadados</h2>
+        <div class="field">
+          <label for="author">author</label>
+          <input type="text" id="author" placeholder="Jim Shooter">
+        </div>
+        <div class="row2">
+          <div class="field">
+            <label for="collectionId">collectionId</label>
+            <input type="text" id="collectionId" placeholder="Marvel">
+          </div>
+          <div class="field">
+            <label for="subCollectionId">subCollectionId</label>
+            <input type="text" id="subCollectionId" placeholder="Guerras Secretas III (2015)">
+          </div>
+        </div>
+        <div class="field">
+          <label for="addedDate">addedDate</label>
+          <input type="date" id="addedDate">
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2><span class="num">4</span>Caminhos (URL)</h2>
+        <div class="field">
+          <label for="baseUrl">URL base do site</label>
+          <input type="text" id="baseUrl" value="https://mvin2006.github.io/HQ/">
+        </div>
+        <div class="row2">
+          <div class="field">
+            <label for="collectionFolder">Pasta da coleção <span class="opt">(opcional)</span></label>
+            <input type="text" id="collectionFolder" placeholder="ex: Marvel">
+          </div>
+          <div class="field">
+            <label for="subFolder">Pasta da subcoleção <span class="opt">(opcional)</span></label>
+            <input type="text" id="subFolder" placeholder="ex: Guerras Secretas (1985)">
+          </div>
+        </div>
+        <!-- Os campos pdfFolder e coverFolder foram removidos/ignorados – agora usamos /PDF/ e /CAPA/ fixos -->
+        <div class="row2">
+          <div class="field">
+            <label for="coverExt">Extensão da capa</label>
+            <input type="text" id="coverExt" value="png">
+          </div>
+          <div class="field">
+            <label for="extCase">Extensão do PDF</label>
+            <select id="extCase">
+              <option value="lower">minúscula (.pdf)</option>
+              <option value="upper">MAIÚSCULA (.PDF)</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:12px;color:var(--text-dim);">
+            <input type="checkbox" id="encodeSpaces" style="width:auto;accent-color:var(--accent);">
+            Codificar espaços como %20 na URL
+          </label>
+        </div>
+        <div class="hint" id="previewUrl"></div>
+        <div class="hint" style="color:var(--cyan);margin-top:2px;">⚠️ Os caminhos agora incluem <strong>/PDF/</strong> para arquivos e <strong>/CAPA/</strong> para capas, independentemente das pastas configuradas acima.</div>
+      </div>
+    </div>
+
+    <!-- RIGHT: list + output -->
+    <div>
+      <div class="panel">
+        <div class="list-head">
+          <h2 style="margin:0"><span class="num">5</span>Pré-visualização</h2>
+          <span class="count-pill" id="countPill">0 arquivos</span>
+        </div>
+
+        <div id="emptyState" class="empty-state">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#5f5d7d" stroke-width="1.4"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
+          <div class="t">Nenhum arquivo carregado</div>
+          <div class="s">Adicione um ou vários PDFs para começar</div>
+        </div>
+
+        <div id="items" class="items" style="display:none;"></div>
+
+        <div class="actions-row">
+          <button class="btn btn-primary" id="generateBtn" disabled>Gerar catálogo</button>
+        </div>
+      </div>
+
+      <div class="panel" id="outputPanel" style="display:none;">
+        <div class="list-head">
+          <h2 style="margin:0"><span class="num">6</span>Resultado</h2>
+          <div style="display:flex;gap:8px;">
+            <button class="btn btn-ghost btn-sm" id="copyBtn">Copiar</button>
+            <button class="btn btn-ghost btn-sm" id="downloadBtn">Baixar .txt</button>
+          </div>
+        </div>
+        <textarea id="output" spellcheck="false" readonly></textarea>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"><span class="dot"></span><span id="toastMsg"></span></div>
+
+<script>
+(function(){
+  let files = []; // {name, id}
+
+  const $ = id => document.getElementById(id);
+  const dropzone = $('dropzone');
+  const folderInput = $('folderInput');
+  const filesInput = $('filesInput');
+  const itemsEl = $('items');
+  const emptyState = $('emptyState');
+  const countPill = $('countPill');
+  const generateBtn = $('generateBtn');
+  const fileHint = $('fileHint');
+  const previewUrl = $('previewUrl');
+  const addFilesBtn = $('addFilesBtn');
+  const addFolderBtn = $('addFolderBtn');
+  const clearFilesBtn = $('clearFilesBtn');
+
+  // default date = today
+  $('addedDate').value = new Date().toISOString().slice(0,10);
+
+  // ---- natural sort ----
+  function naturalCompare(a, b){
+    const ax = [], bx = [];
+    a.replace(/(\d+)|(\D+)/g, (_, d, s) => ax.push([d ? parseInt(d,10) : Infinity, s || ""]));
+    b.replace(/(\d+)|(\D+)/g, (_, d, s) => bx.push([d ? parseInt(d,10) : Infinity, s || ""]));
+    while (ax.length && bx.length) {
+      const an = ax.shift(), bn = bx.shift();
+      const nn = (an[0] - bn[0]) || an[1].localeCompare(bn[1], 'pt-BR');
+      if (nn) return nn;
+    }
+    return ax.length - bx.length;
+  }
+
+  function stripExt(name){ return name.replace(/\.pdf$/i, ''); }
+
+  function loadFileList(fileArr, { append = true } = {}){
+    const pdfs = fileArr.filter(f => /\.pdf$/i.test(f.name));
+    if (!pdfs.length){
+      fileHint.textContent = 'Nenhum arquivo .pdf encontrado nessa seleção.';
+      return;
+    }
+
+    const incoming = pdfs.map(f => ({
+      name: f.name,
+      path: f.webkitRelativePath || f.name
+    }));
+
+    if (append) {
+      const seen = new Set(files.map(f => f.path || f.name));
+      for (const item of incoming) {
+        const key = item.path || item.name;
+        if (!seen.has(key)) { files.push(item); seen.add(key); }
+      }
+    } else {
+      files = incoming;
+    }
+
+    const mode = $('sortMode').value;
+    if (mode === 'natural') files.sort((a,b)=>naturalCompare(a.name,b.name));
+    else if (mode === 'alpha') files.sort((a,b)=>a.name.localeCompare(b.name,'pt-BR'));
+
+    fileHint.textContent = files.length + ' arquivo(s) .pdf carregado(s). Cada entrada usa o nome do arquivo sem a extensão.';
+    clearFilesBtn.disabled = files.length === 0;
+    render();
+  }
+
+  // Clique principal = PDFs individuais.
+  dropzone.addEventListener('click', () => filesInput.click());
+  addFilesBtn.addEventListener('click', () => filesInput.click());
+  addFolderBtn.addEventListener('click', () => folderInput.click());
+  clearFilesBtn.addEventListener('click', () => {
+    files = [];
+    folderInput.value = '';
+    filesInput.value = '';
+    fileHint.textContent = 'Lista limpa. Adicione um ou vários PDFs para começar.';
+    clearFilesBtn.disabled = true;
+    render();
+  });
+  filesInput.addEventListener('change', e => {
+    loadFileList(Array.from(e.target.files), { append: true });
+    e.target.value = '';
+  });
+  folderInput.addEventListener('change', e => {
+    loadFileList(Array.from(e.target.files), { append: true });
+    e.target.value = '';
+  });
+
+  ['dragover','dragenter'].forEach(evt => dropzone.addEventListener(evt, e => {
+    e.preventDefault(); dropzone.classList.add('drag');
+  }));
+  ['dragleave','drop'].forEach(evt => dropzone.addEventListener(evt, e => {
+    e.preventDefault(); dropzone.classList.remove('drag');
+  }));
+  dropzone.addEventListener('drop', e => {
+    const dropped = Array.from(e.dataTransfer.files);
+    if (dropped.length) loadFileList(dropped, { append: true });
+  });
+
+  $('sortMode').addEventListener('change', () => {
+    if (!files.length) return;
+    const mode = $('sortMode').value;
+    if (mode === 'natural') files.sort((a,b)=>naturalCompare(a.name,b.name));
+    else if (mode === 'alpha') files.sort((a,b)=>a.name.localeCompare(b.name,'pt-BR'));
+    render();
+  });
+
+  function currentStartId(){
+    const v = parseInt($('startId').value, 10);
+    return isNaN(v) ? 0 : v;
+  }
+
+  function render(){
+    const startId = currentStartId();
+    if (!files.length){
+      itemsEl.style.display = 'none';
+      emptyState.style.display = 'block';
+      countPill.textContent = '0 arquivos';
+      generateBtn.disabled = true;
+      clearFilesBtn.disabled = true;
+      updatePreviewUrl();
+      return;
+    }
+    emptyState.style.display = 'none';
+    itemsEl.style.display = 'flex';
+    generateBtn.disabled = false;
+    clearFilesBtn.disabled = false;
+    countPill.textContent = files.length + ' arquivo' + (files.length>1?'s':'') +
+      ' · ' + startId + '–' + (startId + files.length - 1);
+
+    itemsEl.innerHTML = '';
+    files.forEach((f, idx) => {
+      const id = startId + idx;
+      const div = document.createElement('div');
+      div.className = 'item';
+      div.draggable = true;
+      div.dataset.idx = idx;
+      div.innerHTML =
+        '<div class="id">' + id + '</div>' +
+        '<div class="info"><div class="title">' + escapeHtml(stripExt(f.name)) + '</div>' +
+        '<div class="meta">' + escapeHtml(f.name) + '</div></div>' +
+        '<div class="grip">⠿</div>';
+      itemsEl.appendChild(div);
+    });
+    updatePreviewUrl();
+  }
+
+  function escapeHtml(s){
+    return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  function escapeJsString(s){
+    return String(s)
+      .replace(/\\/g, '\\\\')
+      .replace(/"/g, '\\"')
+      .replace(/\r/g, '\\r')
+      .replace(/\n/g, '\\n');
+  }
+
+  $('startId').addEventListener('input', render);
+
+  // drag reorder
+  let dragSrc = null;
+  itemsEl.addEventListener('dragstart', e => {
+    const item = e.target.closest('.item');
+    if (!item) return;
+    dragSrc = parseInt(item.dataset.idx, 10);
+    item.classList.add('dragging');
+  });
+  itemsEl.addEventListener('dragend', e => {
+    const item = e.target.closest('.item');
+    if (item) item.classList.remove('dragging');
+  });
+  itemsEl.addEventListener('dragover', e => {
+    e.preventDefault();
+    const target = e.target.closest('.item');
+    if (!target || dragSrc === null) return;
+    const destIdx = parseInt(target.dataset.idx, 10);
+    if (destIdx === dragSrc) return;
+    const [moved] = files.splice(dragSrc, 1);
+    files.splice(destIdx, 0, moved);
+    dragSrc = destIdx;
+    render();
+  });
+
+  // ---- URL helpers ----
+  function urlEncodeName(name){
+    if (!$('encodeSpaces').checked) return name;
+    return name.replace(/ /g, '%20');
+  }
+  function joinUrl(){
+    let base = $('baseUrl').value.trim();
+    if (!base.endsWith('/')) base += '/';
+    const col = $('collectionFolder').value.trim();
+    const sub = $('subFolder').value.trim();
+    let path = base;
+    if (col) path += urlEncodeName(col) + '/';
+    if (sub) path += urlEncodeName(sub) + '/';
+    return path;
+  }
+
+  function updatePreviewUrl(){
+    const base = joinUrl();
+    const pdfExt = $('extCase').value === 'lower' ? '.pdf' : '.PDF';
+    const example = files[0] ? files[0].name : '067 Capitã Marvel e a Tropa da Carol #001.pdf';
+    // Mostra o caminho com /PDF/ e /CAPA/
+    previewUrl.textContent = 'Exemplo PDF: ' + base + 'PDF/' + urlEncodeName(stripExt(example)) + pdfExt +
+                             ' | Capa: ' + base + 'CAPA/' + urlEncodeName(stripExt(example)) + '.' + ($('coverExt').value.trim() || 'png');
+  }
+  ['baseUrl','collectionFolder','subFolder','coverExt','encodeSpaces'].forEach(id => {
+    $(id).addEventListener('input', updatePreviewUrl);
+    $(id).addEventListener('change', updatePreviewUrl);
+  });
+
+  // ---- generate ----
+  generateBtn.addEventListener('click', () => {
+    const startId = currentStartId();
+    const author = $('author').value.trim();
+    const collectionId = $('collectionId').value.trim();
+    const subCollectionId = $('subCollectionId').value.trim();
+    const dateVal = $('addedDate').value; // yyyy-mm-dd
+    const addedDate = (dateVal || new Date().toISOString().slice(0,10)) + 'T00:00:00.000Z';
+
+    const base = joinUrl(); // inclui collectionFolder e subFolder
+    const coverExt = $('coverExt').value.trim() || 'png';
+    const extCase = $('extCase').value;
+
+    // ---------- NOVO: prefixos fixos /PDF/ e /CAPA/ ----------
+    const pdfBase = base + 'PDF/';
+    const coverBase = base + 'CAPA/';
+
+    const lines = files.map((f, idx) => {
+      const id = startId + idx;
+      const title = stripExt(f.name);
+      const encTitle = urlEncodeName(title);
+      const pdfExt = extCase === 'lower' ? '.pdf' : '.PDF';
+      const filePath = pdfBase + encTitle + pdfExt;
+      const coverPath = coverBase + encTitle + '.' + coverExt;
+
+      return '  { id:"' + id + '", title:"' + escapeJsString(title) + '", author:"' + escapeJsString(author) +
+        '", fileType:"pdf", filePath:"' + escapeJsString(filePath) + '", coverPath:"' + escapeJsString(coverPath) +
+        '", collectionId:"' + escapeJsString(collectionId) + '", subCollectionId:"' + escapeJsString(subCollectionId) +
+        '", addedDate:"' + escapeJsString(addedDate) + '" },';
+    });
+
+    const result = '[\n' + lines.join('\n') + '\n]';
+    $('output').value = result;
+    $('outputPanel').style.display = 'block';
+    $('outputPanel').scrollIntoView({behavior:'smooth', block:'nearest'});
+  });
+
+  // ---- copy / download ----
+  $('copyBtn').addEventListener('click', () => {
+    const ta = $('output');
+    ta.removeAttribute('readonly');
+    ta.select();
+    document.execCommand('copy');
+    ta.setAttribute('readonly', true);
+    showToast('Copiado para a área de transferência');
+  });
+
+  $('downloadBtn').addEventListener('click', () => {
+    const blob = new Blob([$('output').value], {type:'text/plain'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    const sub = $('subCollectionId').value.trim() || 'catalogo';
+    a.href = url;
+    a.download = sub.replace(/[^\w\-() ]/g,'').trim().replace(/\s+/g,'_') + '.txt';
+    a.click();
+    URL.revokeObjectURL(url);
+    showToast('Arquivo .txt baixado');
+  });
+
+  function showToast(msg){
+    $('toastMsg').textContent = msg;
+    const t = $('toast');
+    t.classList.add('show');
+    clearTimeout(showToast._t);
+    showToast._t = setTimeout(() => t.classList.remove('show'), 2400);
+  }
+
+  updatePreviewUrl();
+})();
+</script>
+</body>
+</html>
