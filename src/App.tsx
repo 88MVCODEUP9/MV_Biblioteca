@@ -318,6 +318,7 @@ const PRELOADED_BOOKS: Book[] = [
   { id:"207", title:"Império de Tempestades", author:"Sarah J. Maas", fileType:"pdf", filePath:"https://mvin2006.github.io/LIVROS/Trono%20de%20Vidro/Imp%C3%A9rio%20de%20Tempestades.pdf", coverPath:"https://mvin2006.github.io/LIVROS/Trono%20de%20Vidro/Imp%C3%A9rio%20de%20Tempestades.webp", collectionId:"Trono de Vidro", addedDate:"2026-09-01T00:00:00.000Z" },
   { id:"208", title:"Rainha das Sombras", author:"Sarah J. Maas", fileType:"pdf", filePath:"https://mvin2006.github.io/LIVROS/Trono%20de%20Vidro/Rainha%20das%20Sombras.pdf", coverPath:"https://mvin2006.github.io/LIVROS/Trono%20de%20Vidro/Rainha%20das%20Sombras.webp", collectionId:"Trono de Vidro", addedDate:"2026-09-01T00:00:00.000Z" },
   { id:"209", title:"Reino de Cinzas", author:"Sarah J. Maas", fileType:"pdf", filePath:"https://mvin2006.github.io/LIVROS/Trono%20de%20Vidro/Reino%20de%20Cinzas.pdf", coverPath:"https://mvin2006.github.io/LIVROS/Trono%20de%20Vidro/Reino%20de%20Cinzas.webp", collectionId:"Trono de Vidro", addedDate:"2026-09-01T00:00:00.000Z" },
+  { id:"210", title:"O Cão dos Baskervilles", author:"Arthur Conan Doyle", fileType:"pdf", filePath:"https://mvin2006.github.io/LIVROS/Sherlock%20Holmes/O%20C%C3%A3o%20dos%20Baskervilles.pdf", coverPath:"https://mvin2006.github.io/LIVROS/Sherlock%20Holmes/O%20C%C3%A3o%20dos%20Baskervilles.webp", collectionId:"Sherlock Holmes", addedDate:"2026-09-01T00:00:00.000Z" },
   
   
 ];
