@@ -327,6 +327,7 @@ const PRELOADED_BOOKS: Book[] = [
   { id:"216", title:"A Escolha", author:"Kiera Cass", fileType:"pdf", filePath:"https://mvin2006.github.io/LIVROS/A%20Sele%C3%A7%C3%A3o/A%20Escolha.pdf", coverPath:"https://mvin2006.github.io/LIVROS/A%20Sele%C3%A7%C3%A3o/A%20Escolha.webp", collectionId:"A Seleção", addedDate:"2026-09-02T00:00:00.000Z" },
   { id:"217", title:"A Herdeira", author:"Kiera Cass", fileType:"pdf", filePath:"https://mvin2006.github.io/LIVROS/A%20Sele%C3%A7%C3%A3o/A%20Herdeira.pdf", coverPath:"https://mvin2006.github.io/LIVROS/A%20Sele%C3%A7%C3%A3o/A%20Herdeira.webp", collectionId:"A Seleção", addedDate:"2026-09-02T00:00:00.000Z" },
   { id:"218", title:"A Coroa", author:"Kiera Cass", fileType:"pdf", filePath:"https://mvin2006.github.io/LIVROS/A%20Sele%C3%A7%C3%A3o/A%20Coroa.pdf", coverPath:"https://mvin2006.github.io/LIVROS/A%20Sele%C3%A7%C3%A3o/A%20Coroa.webp", collectionId:"A Seleção", addedDate:"2026-09-02T00:00:00.000Z" },
+  { id:"219", title:"Felizes para Sempre", author:"Kiera Cass", fileType:"pdf", filePath:"https://mvin2006.github.io/LIVROS/A%20Sele%C3%A7%C3%A3o/Felizes%20Para%20Sempre.pdf", coverPath:"https://mvin2006.github.io/LIVROS/A%20Sele%C3%A7%C3%A3o/Felizes%20para%20Sempre.webp", collectionId:"A Seleção", addedDate:"2026-09-02T00:00:00.000Z" },
   
   
 ];
