@@ -382,6 +382,7 @@ const PRELOADED_BOOKS: Book[] = [
   { id:"232", title:"Depois do Desencontro", author:"Anna Todd", fileType:"pdf", filePath:"https://mvin2006.github.io/LIVROS/AFTER/3%20-%20After%20-%20Depois%20do%20Desencontro.pdf", coverPath:"https://mvin2006.github.io/LIVROS/AFTER/3%20-%20After%20-%20Depois%20do%20Desencontro.webp", collectionId:"After", addedDate:"2026-09-02T00:00:00.000Z" },
   { id:"233", title:"Depois da Promessa", author:"Anna Todd", fileType:"pdf", filePath:"https://mvin2006.github.io/LIVROS/AFTER/5%20-%20After%20-%20Depois%20da%20Promessa.pdf", coverPath:"https://mvin2006.github.io/LIVROS/AFTER/5%20-%20After%20-%20Depois%20da%20Promessa.webp", collectionId:"After", addedDate:"2026-09-02T00:00:00.000Z" },
   { id:"234", title:"A história de Hardin antes de Tessa", author:"Anna Todd", fileType:"pdf", filePath:"https://mvin2006.github.io/LIVROS/AFTER/6%20-%20Before%20%E2%80%93%20A%20hist%C3%B3ria%20de%20Hardin%20antes%20de%20Tessa%20(After).pdf", coverPath:"https://mvin2006.github.io/LIVROS/AFTER/6%20-%20Before%20%E2%80%93%20A%20hist%C3%B3ria%20de%20Hardin%20antes%20de%20Tessa%20(After).webp", collectionId:"After", addedDate:"2026-09-02T00:00:00.000Z" },
+  { id:"235", title:"A Culpa é das Estrelas", author:"John Green", fileType:"pdf", filePath:"https://mvin2006.github.io/LIVROS/John%20Green/A%20Culpa%20%C3%A9%20das%20Estrelas.pdf", coverPath:"https://mvin2006.github.io/LIVROS/John%20Green/A%20Culpa%20%C3%A9%20das%20Estrelas.webp", collectionId:"John Green", addedDate:"2026-09-02T00:00:00.000Z" },
 
 
 
