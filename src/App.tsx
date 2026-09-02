@@ -377,6 +377,7 @@ const PRELOADED_BOOKS: Book[] = [
   { id:"227", title:"Ladrões de Sonhos", author:"Maggie Stiefvater", fileType:"epub", filePath:"https://mvin2006.github.io/LIVROS/A%20Saga%20dos%20Corvos/2%20-%20Ladr%C3%B5es%20de%20Sonhos.epub", coverPath:"https://mvin2006.github.io/LIVROS/A%20Saga%20dos%20Corvos/2%20-%20Ladr%C3%B5es%20de%20Sonhos.webp", collectionId:"A Saga dos Corvos", addedDate:"2026-09-02T00:00:00.000Z" },
   { id:"228", title:"Lírio Azul", author:"Maggie Stiefvater", fileType:"epub", filePath:"https://mvin2006.github.io/LIVROS/A%20Saga%20dos%20Corvos/3%20-%20L%C3%ADrio%20Azul.epub", coverPath:"https://mvin2006.github.io/LIVROS/A%20Saga%20dos%20Corvos/3%20-%20L%C3%ADrio%20Azul.webp", collectionId:"A Saga dos Corvos", addedDate:"2026-09-02T00:00:00.000Z" },
   { id:"229", title:"O Rei Corvo", author:"Maggie Stiefvater", fileType:"epub", filePath:"https://mvin2006.github.io/LIVROS/A%20Saga%20dos%20Corvos/4%20-%20O%20Rei%20Corvo.epub", coverPath:"https://mvin2006.github.io/LIVROS/A%20Saga%20dos%20Corvos/4%20-%20O%20Rei%20Corvo.webp", collectionId:"A Saga dos Corvos", addedDate:"2026-09-02T00:00:00.000Z" },
+  { id:"230", title:"After", author:"Anna Todd", fileType:"pdf", filePath:"https://mvin2006.github.io/LIVROS/AFTER/1%20-%20AFTER.pdf", coverPath:"https://mvin2006.github.io/LIVROS/AFTER/1%20-%20AFTER.webp", collectionId:"After", addedDate:"2026-09-02T00:00:00.000Z" },
 
 
 
