@@ -9,8 +9,6 @@ import {
   
   import {
     BookOpen,
-    ChevronLeft,
-    ChevronRight,
     Download,
     Loader2,
     X,
@@ -989,6 +987,24 @@ import {
             "
             aria-label="Conteúdo do livro — modo somente leitura"
           />
+
+          {/*
+            O EPUB é exibido dentro de um iframe. Esta camada transparente,
+            ativa somente em telas de toque, garante que o gesto horizontal
+            chegue ao leitor sem colocar botões sobre o texto.
+          */}
+          {!loading && !error && (
+            <div
+              className="
+                absolute inset-0
+                z-[5]
+                md:hidden
+                touch-pan-y
+              "
+              aria-hidden="true"
+              onClick={wakeControls}
+            />
+          )}
   
           {/* ============================================================
               LOADING
@@ -1165,29 +1181,21 @@ import {
                 }
                 className="
                   absolute
-                  left-3 sm:left-5
-                  top-1/2
-                  -translate-y-1/2
+                  left-0 top-0 bottom-0
                   z-10
-                  w-11 h-16
-                  flex items-center
-                  justify-center
-                  rounded-2xl
-                  border border-white/5
-                  bg-black/10
-                  backdrop-blur-sm
-                  text-white/35
-                  hover:bg-black/30
-                  hover:border-white/10
-                  hover:text-white/90
-                  hover:scale-[1.03]
-                  active:scale-95
-                  transition-all duration-200
+                  hidden md:block
+                  w-[clamp(52px,7vw,92px)]
+                  opacity-0
+                  focus-visible:opacity-100
+                  focus-visible:outline
+                  focus-visible:outline-2
+                  focus-visible:outline-[var(--gold)]
+                  focus-visible:outline-offset-[-3px]
+                  transition-opacity duration-200
                 "
                 aria-label="Página anterior"
-              >
-                <ChevronLeft className="w-6 h-6" />
-              </button>
+                title="Página anterior"
+              />
   
               <button
                 type="button"
@@ -1196,29 +1204,21 @@ import {
                 }
                 className="
                   absolute
-                  right-3 sm:right-5
-                  top-1/2
-                  -translate-y-1/2
+                  right-0 top-0 bottom-0
                   z-10
-                  w-11 h-16
-                  flex items-center
-                  justify-center
-                  rounded-2xl
-                  border border-white/5
-                  bg-black/10
-                  backdrop-blur-sm
-                  text-white/35
-                  hover:bg-black/30
-                  hover:border-white/10
-                  hover:text-white/90
-                  hover:scale-[1.03]
-                  active:scale-95
-                  transition-all duration-200
+                  hidden md:block
+                  w-[clamp(52px,7vw,92px)]
+                  opacity-0
+                  focus-visible:opacity-100
+                  focus-visible:outline
+                  focus-visible:outline-2
+                  focus-visible:outline-[var(--gold)]
+                  focus-visible:outline-offset-[-3px]
+                  transition-opacity duration-200
                 "
                 aria-label="Próxima página"
-              >
-                <ChevronRight className="w-6 h-6" />
-              </button>
+                title="Próxima página"
+              />
             </>
           )}
   
