@@ -399,6 +399,7 @@ const PRELOADED_BOOKS: Book[] = [
   { id:"249", title:"Espada de Vidro", author:"Victoria Aveyard", fileType:"pdf", filePath:"https://mvin2006.github.io/LIVROS/Red%20Queen/2%20-%20Espada%20de%20Vidro.pdf", coverPath:"https://mvin2006.github.io/LIVROS/Red%20Queen/2%20-%20Espada%20de%20Vidro.webp", collectionId:"Red Queen", addedDate:"2026-09-02T00:00:00.000Z" },
   { id:"250", title:"A Prisão do Rei", author:"Victoria Aveyard", fileType:"pdf", filePath:"https://mvin2006.github.io/LIVROS/Red%20Queen/3%20-%20A%20Pris%C3%A3o%20do%20Rei.pdf", coverPath:"https://mvin2006.github.io/LIVROS/Red%20Queen/3%20-%20A%20Pris%C3%A3o%20do%20Rei.webp", collectionId:"Red Queen", addedDate:"2026-09-02T00:00:00.000Z" },
   { id:"251", title:"Tempestade De Guerra", author:"Victoria Aveyard", fileType:"pdf", filePath:"https://mvin2006.github.io/LIVROS/Red%20Queen/4%20-%20Tempestade%20De%20Guerra.pdf", coverPath:"https://mvin2006.github.io/LIVROS/Red%20Queen/4%20-%20Tempestade%20De%20Guerra.webp", collectionId:"Red Queen", addedDate:"2026-09-02T00:00:00.000Z" },
+  { id:"252", title:"O Navio dos Mortos", author:"Rick Riordan", fileType:"pdf", filePath:"https://mvin2006.github.io/LIVROS/Os%20Deuses%20de%20Argard/O%20Navio%20dos%20Mortos.pdf", coverPath:"https://mvin2006.github.io/LIVROS/Os%20Deuses%20de%20Argard/O%20Navio%20dos%20Mortos.webp", collectionId:"Os Deuses de Argard", addedDate:"2026-09-02T00:00:00.000Z" },
 
 
 
