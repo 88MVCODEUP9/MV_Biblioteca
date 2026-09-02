@@ -373,6 +373,7 @@ const PRELOADED_BOOKS: Book[] = [
   { id:"223", title:"Fallen", author:"Lauren Kate", fileType:"pdf", filePath:"https://mvin2006.github.io/LIVROS/Fallen/Fallen%20-%201.pdf", coverPath:"https://mvin2006.github.io/LIVROS/Fallen/Fallen%20-%201.webp", collectionId:"Fallen", addedDate:"2026-09-02T00:00:00.000Z" },
   { id:"224", title:"Tormenta", author:"Lauren Kate", fileType:"pdf", filePath:"https://mvin2006.github.io/LIVROS/Fallen/Tormenta%20-%202.pdf", coverPath:"https://mvin2006.github.io/LIVROS/Fallen/Tormenta%20-%202.webp", collectionId:"Fallen", addedDate:"2026-09-02T00:00:00.000Z" },
   { id:"225", title:"Paixão", author:"Lauren Kate", fileType:"pdf", filePath:"https://mvin2006.github.io/LIVROS/Fallen/Paix%C3%A3o%20-%203.pdf", coverPath:"https://mvin2006.github.io/LIVROS/Fallen/Paix%C3%A3o%20-%203.webp", collectionId:"Fallen", addedDate:"2026-09-02T00:00:00.000Z" },
+  { id:"226", title:"Os Garotos Corvos", author:"Maggie Stiefvater", fileType:"epub", filePath:"https://mvin2006.github.io/LIVROS/A%20Saga%20dos%20Corvos/1%20-%20Maggie%20Stiefvater.epub", coverPath:"https://mvin2006.github.io/LIVROS/A%20Saga%20dos%20Corvos/1%20-%20Maggie%20Stiefvater.webp", collectionId:"A Saga dos Corvos", addedDate:"2026-09-02T00:00:00.000Z" },
 
 
 
