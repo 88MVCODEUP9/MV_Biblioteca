@@ -389,6 +389,7 @@ const PRELOADED_BOOKS: Book[] = [
   { id:"239", title:"Quem é você, Alasca", author:"John Green", fileType:"pdf", filePath:"https://mvin2006.github.io/LIVROS/John%20Green/Quem%20%C3%A9%20voc%C3%AA%2C%20Alasca.pdf", coverPath:"https://mvin2006.github.io/LIVROS/John%20Green/Quem%20%C3%A9%20voc%C3%AA%2C%20Alasca.webp", collectionId:"John Green", addedDate:"2026-09-02T00:00:00.000Z" },
   { id:"240", title:"Tartarugas Até Lá Embaixo", author:"John Green", fileType:"pdf", filePath:"https://mvin2006.github.io/LIVROS/John%20Green/Tartarugas%20At%C3%A9%20L%C3%A1%20Embaixo.pdf", coverPath:"https://mvin2006.github.io/LIVROS/John%20Green/Tartarugas%20At%C3%A9%20L%C3%A1%20Embaixo.webp", collectionId:"John Green", addedDate:"2026-09-02T00:00:00.000Z" },
   { id:"241", title:"Will e Will, Um nome, Um Destino", author:"John Green", fileType:"pdf", filePath:"https://mvin2006.github.io/LIVROS/John%20Green/Will%20e%20Will%2C%20Um%20nome%2C%20Um%20Destino.pdf", coverPath:"https://mvin2006.github.io/LIVROS/John%20Green/Will%20e%20Will%2C%20Um%20nome%2C%20Um%20Destino.webp", collectionId:"John Green", addedDate:"2026-09-02T00:00:00.000Z" },
+  { id:"242", title:"A Batalha no labirinto", author:"Rick Riordan", fileType:"pdf", filePath:"https://mvin2006.github.io/LIVROS/Percy%20Jackson%20e%20os%20Olimpianos/A%20Batalha%20no%20labirinto%20-%204.pdf", coverPath:"https://mvin2006.github.io/LIVROS/Percy%20Jackson%20e%20os%20Olimpianos/A%20Batalha%20no%20labirinto%20-%204.webp", collectionId:"Percy Jackson e os Olimpianos", addedDate:"2026-09-02T00:00:00.000Z" },
 
 
 
