@@ -323,6 +323,7 @@ const PRELOADED_BOOKS: Book[] = [
   { id:"212", title:"O Vale do Medo", author:"Arthur Conan Doyle", fileType:"pdf", filePath:"https://mvin2006.github.io/LIVROS/Sherlock%20Holmes/O%20Vale%20do%20Medo.pdf", coverPath:"https://mvin2006.github.io/LIVROS/Sherlock%20Holmes/O%20Vale%20do%20Medo.webp", collectionId:"Sherlock Holmes", addedDate:"2026-09-01T00:00:00.000Z" },
   { id:"213", title:"Um Estudo em Vermelho", author:"Um Estudo em Vermelho", fileType:"pdf", filePath:"https://mvin2006.github.io/LIVROS/Sherlock%20Holmes/Um%20Estudo%20em%20Vermelho.pdf", coverPath:"https://mvin2006.github.io/LIVROS/Sherlock%20Holmes/Um%20Estudo%20em%20Vermelho.webp", collectionId:"Sherlock Holmes", addedDate:"2026-09-01T00:00:00.000Z" },
   { id:"214", title:"A Seleção", author:"Kiera Cass", fileType:"pdf", filePath:"https://mvin2006.github.io/LIVROS/A%20Sele%C3%A7%C3%A3o/A%20Sele%C3%A7%C3%A3o.pdf", coverPath:"https://mvin2006.github.io/LIVROS/A%20Sele%C3%A7%C3%A3o/A%20Sele%C3%A7%C3%A3o.webp", collectionId:"A Seleção", addedDate:"2026-09-02T00:00:00.000Z" },
+  { id:"215", title:"A Elite", author:"Kiera Cass", fileType:"pdf", filePath:"https://mvin2006.github.io/LIVROS/A%20Sele%C3%A7%C3%A3o/A%20Elite.pdf", coverPath:"https://mvin2006.github.io/LIVROS/A%20Sele%C3%A7%C3%A3o/A%20Elite.webp", collectionId:"A Seleção", addedDate:"2026-09-02T00:00:00.000Z" },
   
   
 ];
