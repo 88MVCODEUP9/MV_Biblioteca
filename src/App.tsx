@@ -406,6 +406,7 @@ const PRELOADED_BOOKS: Book[] = [
   { id:"256", title:"Corte de Névoa e Fúria", author:"Sarah J. Maas", fileType:"pdf", filePath:"https://mvin2006.github.io/LIVROS/Acotar/2%20-%20Corte%20de%20N%C3%A9voa%20e%20F%C3%BAria.pdf", coverPath:"https://mvin2006.github.io/LIVROS/Acotar/2%20-%20Corte%20de%20N%C3%A9voa%20e%20F%C3%BAria-02.webp", collectionId:"Acotar", addedDate:"2026-09-14T00:00:00.000Z" },
   { id:"257", title:"Corte de Asas e Ruínas", author:"Sarah J. Maas", fileType:"pdf", filePath:"https://mvin2006.github.io/LIVROS/Acotar/3%20-%20Corte%20de%20Asas%20e%20Ru%C3%ADnas.pdf", coverPath:"https://mvin2006.github.io/LIVROS/Acotar/3%20-%20Corte%20de%20Asas%20e%20Ru%C3%ADnas.webp", collectionId:"Acotar", addedDate:"2026-09-14T00:00:00.000Z" },
   { id:"258", title:"Corte de Gelo e Estrelas", author:"Sarah J. Maas", fileType:"pdf", filePath:"https://mvin2006.github.io/LIVROS/Acotar/4%20-%20Corte%20de%20Gelo%20e%20Estrelas.pdf", coverPath:"https://mvin2006.github.io/LIVROS/Acotar/4%20-%20Corte%20de%20Gelo%20e%20Estrelas.webp", collectionId:"Acotar", addedDate:"2026-09-14T00:00:00.000Z" },
+  { id:"259", title:"A Roda da Eternidade", author:"Neil Gaiman", fileType:"pdf", filePath:"https://mvin2006.github.io/LIVROS/Entremundos/A%20Roda%20da%20Eternidade%20-%20Neil%20Gaiman.pdf", coverPath:"https://mvin2006.github.io/LIVROS/Entremundos/A%20Roda%20da%20Eternidade%20-%20Neil%20Gaiman.webp", collectionId:"Entremundos", addedDate:"2026-09-14T00:00:00.000Z" },
 
 
 
