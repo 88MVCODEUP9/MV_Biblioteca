@@ -409,6 +409,7 @@ const PRELOADED_BOOKS: Book[] = [
   { id:"259", title:"A Roda da Eternidade", author:"Neil Gaiman", fileType:"pdf", filePath:"https://mvin2006.github.io/LIVROS/Entremundos/A%20Roda%20da%20Eternidade%20-%20Neil%20Gaiman.pdf", coverPath:"https://mvin2006.github.io/LIVROS/Entremundos/A%20Roda%20da%20Eternidade%20-%20Neil%20Gaiman.webp", collectionId:"Entremundos", addedDate:"2026-09-14T00:00:00.000Z" },
   { id:"261", title:"Entremundos", author:"Neil Gaiman", fileType:"pdf", filePath:"https://mvin2006.github.io/LIVROS/Entremundos/Entremundos%20-%20Neil%20Gaiman.pdf", coverPath:"https://mvin2006.github.io/LIVROS/Entremundos/Entremundos%20-%20Neil%20Gaiman.webp", collectionId:"Entremundos", addedDate:"2026-09-14T00:00:00.000Z" },
   { id:"262", title:"Sonho de Prata", author:"Neil Gaiman", fileType:"pdf", filePath:"https://mvin2006.github.io/LIVROS/Entremundos/Sonho%20de%20Prata%20-%20Neil%20Gaiman.pdf", coverPath:"https://mvin2006.github.io/LIVROS/Entremundos/Sonho%20de%20Prata%20-%20Neil%20Gaiman.webp", collectionId:"Entremundos", addedDate:"2026-09-14T00:00:00.000Z" },
+  { id:"263", title:"Nivel 18 Capítulo 1", author:"Zetto", fileType:"pdf", filePath:"https://mvin2006.github.io/HQ/Sinful%20Lust/%2B18/Nivel%2018%20Cap%C3%ADtulo%201.pdf", coverPath:"https://mvin2006.github.io/HQ/Sinful%20Lust/%2B18/Nivel%2018%20Cap%C3%ADtulo%201.webp", collectionId:"Sinful Lust", subCollectionId:"+18", addedDate:"2026-09-15T00:00:00.000Z" },
 
 
 
