@@ -855,6 +855,22 @@ function App() {
     });
   }, []);
 
+  // Volta um nível da navegação: subcoleção -> coleção principal -> lista geral.
+  // Manter essa lógica em um único ponto evita que o botão dependa da aba atual.
+  const goBack = useCallback(() => {
+    if (!selectedCollection) return;
+
+    const current = collectionDefinitions.find(collection => sameCollectionId(collection.id, selectedCollection));
+    if (current?.parentId) {
+      setSelectedCollection(current.parentId);
+      setActiveTab('collections');
+      return;
+    }
+
+    setSelectedCollection(null);
+    setActiveTab('collections');
+  }, [collectionDefinitions, selectedCollection]);
+
   // ── Reader renderer ────────────────────────────────────────────────────────
   const renderReader = () => {
     if (!readingBook) return null;
