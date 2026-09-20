@@ -11,7 +11,6 @@ import {
     BookOpen,
     ChevronLeft,
     ChevronRight,
-    Download,
     Loader2,
     X,
     Maximize,
@@ -30,7 +29,6 @@ import {
     useEntranceTransition,
     useFullscreen,
     useSwipeNavigation,
-    triggerDownload,
   } from './reader/reader-kit';
   
   interface EpubReaderProps {
@@ -381,10 +379,6 @@ import {
     const rotateContent = useCallback(() => {
       setRotation(current => (current + 90) % 360);
     }, []);
-
-    const downloadEpub = useCallback(() => {
-      triggerDownload(url, `${title}.epub`);
-    }, [url, title]);
 
     useEffect(() => {
       const element = contentRef.current;
@@ -1084,16 +1078,6 @@ import {
                 <RotateCw className="w-4 h-4" />
               </button>
 
-              <button
-                type="button"
-                onClick={downloadEpub}
-                className="icon-btn w-8 h-8"
-                aria-label="Baixar EPUB"
-                title="Baixar EPUB"
-              >
-                <Download className="w-4 h-4" />
-              </button>
-  
               {/* Fullscreen */}
               <button
                 type="button"
